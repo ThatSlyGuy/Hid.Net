@@ -256,7 +256,7 @@ namespace Hid.Net
                 var manufacturer = string.Empty;
                 var pointerToBuffer = Marshal.AllocHGlobal(126);
 
-                var preparsedDataResult = APICalls.HidD_GetPreparsedData(safeFileHandle, ref pointerToPreParsedData))
+                var preparsedDataResult = APICalls.HidD_GetPreparsedData(safeFileHandle, ref pointerToPreParsedData);
      
                 //TODO: Deal with issues here
 

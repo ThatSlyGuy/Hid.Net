@@ -256,10 +256,9 @@ namespace Hid.Net
                 var manufacturer = string.Empty;
                 var pointerToBuffer = Marshal.AllocHGlobal(126);
 
-                if (!APICalls.HidD_GetPreparsedData(safeFileHandle, ref pointerToPreParsedData))
-                {
-                    throw new Exception("Could not obtain handle on device");
-                }
+                var preparsedDataResult = APICalls.HidD_GetPreparsedData(safeFileHandle, ref pointerToPreParsedData))
+     
+                //TODO: Deal with issues here
 
                 var getCapsResult = APICalls.HidP_GetCaps(pointerToPreParsedData, ref hidCollectionCapabilities);
 

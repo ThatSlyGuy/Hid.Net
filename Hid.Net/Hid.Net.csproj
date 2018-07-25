@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
+    <CodeAnalysisRuleSet>CodeRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <SignAssembly>false</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>Key.pfx</AssemblyOriginatorKeyFile>
+    <Version>1.1.6</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://bitbucket.org/MelbourneDeveloper/hid.net/wiki/License</PackageLicenseUrl>
+    <Copyright>Christian Findlay</Copyright>
+    <PackageProjectUrl>https://bitbucket.org/MelbourneDeveloper/hid.net</PackageProjectUrl>
+    <Description>Hid.Net
+
+Cross platform Hid (USB) library. 
+Enumerate Hid (USB) devices and read and write to/from them. 
+Supports .NET, Android, and UWP out of the box. Other platforms can be added</Description>
+    <PackageTags>Hid USB Android UWP Ledger Trezor</PackageTags>
+    <AssemblyVersion>1.1.6.0</AssemblyVersion>
+    <FileVersion>1.1.6.0</FileVersion>
+    <Authors>Christian Findlay</Authors>
+    <Company>Christian Findlay</Company>
+    <RepositoryUrl>https://bitbucket.org/MelbourneDeveloper/hid.net</RepositoryUrl>
+    <PackageReleaseNotes>Fix Android and UWP support</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;HIDNET</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;RELEASE;NETSTANDARD2_0;HIDNET</DefineConstants>
+    <OutputPath>C:\GitRepos\hid.net\NuGet\</OutputPath>
+  </PropertyGroup>
+
+</Project>

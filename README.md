@@ -9,6 +9,7 @@ Currently supports:
 **Would love to hear from you if you'd like to add Linux or MacOS support!**
 
 ## Windows Sample (Console)
+https://github.com/LedgerHQ/ledger-dotnet-api
 https://github.com/MelbourneDeveloper/Trezor.Net
 
 ## NuGet

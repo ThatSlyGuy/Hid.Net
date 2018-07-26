@@ -8,3 +8,6 @@ Currently supports:
 
 # Windows Sample (Console)
 https://github.com/MelbourneDeveloper/Trezor.Net
+
+# NuGet
+Install-Package Hid.Net

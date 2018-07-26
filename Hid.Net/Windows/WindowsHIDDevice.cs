@@ -257,7 +257,11 @@ namespace Hid.Net
                 var pointerToBuffer = Marshal.AllocHGlobal(126);
 
                 var preparsedDataResult = APICalls.HidD_GetPreparsedData(safeFileHandle, ref pointerToPreParsedData);
-     
+                if (!preparsedDataResult)
+                {
+                    return null;
+                }
+
                 //TODO: Deal with issues here
 
                 var getCapsResult = APICalls.HidP_GetCaps(pointerToPreParsedData, ref hidCollectionCapabilities);

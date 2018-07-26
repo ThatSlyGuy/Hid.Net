@@ -10,6 +10,7 @@ Currently supports:
 
 ## Windows Sample (Console)
 https://github.com/LedgerHQ/ledger-dotnet-api
+
 https://github.com/MelbourneDeveloper/Trezor.Net
 
 ## NuGet

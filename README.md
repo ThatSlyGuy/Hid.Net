@@ -1,4 +1,4 @@
-## Hid.Net
+# Hid.Net
 Cross platform C# library for talking to HID devices in a uniform way through dependency injection.
 
 Currently supports:
@@ -6,8 +6,8 @@ Currently supports:
 * Windows
 * UWP
 
-# Windows Sample (Console)
+## Windows Sample (Console)
 https://github.com/MelbourneDeveloper/Trezor.Net
 
-# NuGet
+## NuGet
 Install-Package Hid.Net

@@ -176,6 +176,11 @@ namespace Hid.Net
 
         public async Task<byte[]> ReadAsync()
         {
+            if (_ReadFileStream == null)
+            {
+                throw new Exception("The device has not been initialized");
+            }
+
             var bytes = new byte[_HidCollectionCapabilities.InputReportByteLength];
 
             try
@@ -205,6 +210,11 @@ namespace Hid.Net
 
         public async Task WriteAsync(byte[] data)
         {
+            if (_WriteFileStream == null)
+            {
+                throw new Exception("The device has not been initialized");
+            }
+
             if (data.Length > OutputReportByteLength)
             {
                 throw new Exception($"Data is longer than {_HidCollectionCapabilities.OutputReportByteLength - 1} bytes which is the device's OutputReportByteLength.");

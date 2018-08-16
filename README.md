@@ -30,5 +30,7 @@ Install-Package Hid.Net
 ## Donate
 
 Bitcoin: 33LrG1p81kdzNUHoCnsYGj6EHRprTKWu3U
+
 Ethereum: 0x7ba0ea9975ac0efb5319886a287dcf5eecd3038e
+
 Litecoin: MVAbLaNPq7meGXvZMU4TwypUsDEuU6stpY

@@ -26,11 +26,24 @@ namespace Hid.Net
         #region Private Properties
         private ushort OutputReportByteLength => _HidCollectionCapabilities.OutputReportByteLength > 0 ? _HidCollectionCapabilities.OutputReportByteLength : (ushort)DeviceInformation.OutputReportByteLength;
         private string LogSection => nameof(WindowsHidDevice);
+        private DeviceInformation _DeviceInformation;
         #endregion
 
         #region Public Properties
         public bool DataHasExtraByte { get; set; } = true;
-        public DeviceInformation DeviceInformation { get; private set; }
+
+        public DeviceInformation DeviceInformation
+        {
+            get
+            {
+                return _DeviceInformation;
+            }
+            set
+            {
+                _DeviceInformation = value;
+            }
+        }
+
         public string DevicePath => DeviceInformation.DevicePath;
         public bool IsInitialized { get; private set; }
         public int ProductId => DeviceInformation.ProductId;
@@ -101,9 +114,13 @@ namespace Hid.Net
         #endregion
 
         #region Constructor
-        public WindowsHidDevice(DeviceInformation deviceInformation)
+        public WindowsHidDevice()
         {
-            DeviceInformation = deviceInformation;
+        }
+
+        public WindowsHidDevice(DeviceInformation deviceInformation) : this()
+        {
+            DeviceInformation = deviceInformation ?? throw new ArgumentNullException(nameof(deviceInformation));
         }
         #endregion
 
@@ -134,6 +151,13 @@ namespace Hid.Net
 
         public bool Initialize()
         {
+            Dispose();
+
+            if (DeviceInformation == null)
+            {
+                throw new WindowsHidException($"{nameof(DeviceInformation)} must be specified before {nameof(Initialize)} can be called.");
+            }
+
             var pointerToPreParsedData = new IntPtr();
             _HidCollectionCapabilities = new HidCollectionCapabilities();
             var pointerToBuffer = Marshal.AllocHGlobal(126);

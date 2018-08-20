@@ -190,6 +190,8 @@ namespace Hid.Net
 
             IsInitialized = true;
 
+            Connected?.Invoke(this, new EventArgs());
+
             return true;
         }
 

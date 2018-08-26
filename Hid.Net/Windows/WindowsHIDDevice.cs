@@ -26,24 +26,11 @@ namespace Hid.Net
         #region Private Properties
         private ushort OutputReportByteLength => _HidCollectionCapabilities.OutputReportByteLength > 0 ? _HidCollectionCapabilities.OutputReportByteLength : (ushort)DeviceInformation.OutputReportByteLength;
         private string LogSection => nameof(WindowsHidDevice);
-        private DeviceInformation _DeviceInformation;
         #endregion
 
         #region Public Properties
         public bool DataHasExtraByte { get; set; } = true;
-
-        public DeviceInformation DeviceInformation
-        {
-            get
-            {
-                return _DeviceInformation;
-            }
-            set
-            {
-                _DeviceInformation = value;
-            }
-        }
-
+        public DeviceInformation DeviceInformation { get; set; }
         public string DevicePath => DeviceInformation.DevicePath;
         public bool IsInitialized { get; private set; }
         public int ProductId => DeviceInformation.ProductId;
@@ -120,7 +107,7 @@ namespace Hid.Net
 
         public WindowsHidDevice(DeviceInformation deviceInformation) : this()
         {
-            DeviceInformation = deviceInformation ?? throw new ArgumentNullException(nameof(deviceInformation));
+            DeviceInformation = deviceInformation;
         }
         #endregion
 
@@ -139,6 +126,8 @@ namespace Hid.Net
             {
                 _WriteSafeFileHandle.Dispose();
             }
+
+            Disconnected?.Invoke(this, new EventArgs());
         }
 
         //TODO

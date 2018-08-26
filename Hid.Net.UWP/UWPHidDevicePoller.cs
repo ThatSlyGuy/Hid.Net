@@ -65,7 +65,7 @@ namespace Hid.Net.UWP
         #endregion
 
         #region Private Methods
-        private static async Task<wde.DeviceInformationCollection> GetAllDevices()
+        public static async Task<wde.DeviceInformationCollection> GetAllDevices()
         {
             return await wde.DeviceInformation.FindAllAsync().AsTask();
         }
@@ -81,6 +81,13 @@ namespace Hid.Net.UWP
 
             return allDevices.Where(args => args.Id.ToLower().Contains(vendorIdString) && args.Id.ToLower().Contains(productIdString) && args.IsEnabled).ToList();
         }
-        #endregion  
+        #endregion
+
+        #region Public Methods
+        public void Stop()
+        {
+            _PollTimer.Stop();
+        }
+        #endregion
     }
 }

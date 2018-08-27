@@ -8,7 +8,7 @@ Currently supports:
 
 **Would love to hear from you if you'd like to add Linux or MacOS support!**
 
-## Samples
+## Samples & Unit Tests
 
 https://github.com/MelbourneDeveloper/Trezor.Net (UWP, Console - .NET Framework)
 

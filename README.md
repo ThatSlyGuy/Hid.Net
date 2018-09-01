@@ -8,15 +8,15 @@ Currently supports:
 
 **Would love to hear from you if you'd like to add Linux or MacOS support!**
 
-## Windows Samples (Console)
+## Samples & Unit Tests
 
-https://github.com/MelbourneDeveloper/Trezor.Net
+https://github.com/MelbourneDeveloper/Trezor.Net (UWP, Console - .NET Framework)
 
-https://github.com/MelbourneDeveloper/Ledger.Net
+https://github.com/MelbourneDeveloper/Ledger.Net (Console - .NET Core)
 
-https://github.com/LedgerHQ/ledger-dotnet-api
+https://github.com/LedgerHQ/ledger-dotnet-api (Console - .NET Core)
 
-https://github.com/MelbourneDeveloper/KeepKey.Net
+https://github.com/MelbourneDeveloper/KeepKey.Net (.NET Framework)
 
 ## Store App Production Usage
 

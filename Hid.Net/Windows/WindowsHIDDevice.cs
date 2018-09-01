@@ -238,6 +238,11 @@ namespace Hid.Net
             byte[] bytes;
             if (DataHasExtraByte)
             {
+                if (OutputReportByteLength == data.Length)
+                {
+                    throw new HidException($"The data sent to the device was a the same length as the HidCollectionCapabilities.OutputReportByteLength. This probably indicates that DataHasExtraByte should be set to false.");
+                }
+
                 bytes = new byte[OutputReportByteLength];
                 Array.Copy(data, 0, bytes, 1, data.Length);
                 bytes[0] = 0;

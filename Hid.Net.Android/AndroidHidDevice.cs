@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hid.Net.Android
 {
-    public class AndroidHidDevice : IHidDevice
+    public class AndroidHidDevice : HidDeviceBase, IHidDevice
     {
         #region Fields
         private UsbDeviceConnection _UsbDeviceConnection;
@@ -121,7 +121,7 @@ namespace Hid.Net.Android
 
                 //Marshal.Copy(byteBuffer.GetDirectBufferAddress(), buffers, 0, ReadBufferLength);
 
-                Tracer.Trace(false, buffers, buffers.Length);
+                Tracer?.Trace(false, buffers);
 
                 return buffers;
             }
@@ -141,7 +141,7 @@ namespace Hid.Net.Android
                 request.Initialize(_UsbDeviceConnection, _WriteEndpoint);
                 var byteBuffer = ByteBuffer.Wrap(data);
 
-                Tracer.Trace(true, data, data.Length);
+                Tracer?.Trace(true, data);
 
                 request.Queue(byteBuffer, data.Length);
                 await _UsbDeviceConnection.RequestWaitAsync();

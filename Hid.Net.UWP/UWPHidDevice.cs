@@ -8,7 +8,7 @@ using wde = Windows.Devices.Enumeration;
 
 namespace Hid.Net.UWP
 {
-    public class UWPHidDevice : IHidDevice
+    public class UWPHidDevice : HidDeviceBase, IHidDevice
     {
         #region Events
         public event EventHandler Connected;
@@ -148,7 +148,7 @@ namespace Hid.Net.UWP
                 if (_Chunks.Count > 0)
                 {
                     var retVal = _Chunks[0];
-                    Tracer.Trace(false, retVal, retVal.Length);
+                    Tracer?.Trace(false, retVal);
                     _Chunks.RemoveAt(0);
                     return retVal;
                 }
@@ -178,8 +178,7 @@ namespace Hid.Net.UWP
             outReport.Data = buffer;
             var operation = _HidDevice.SendOutputReportAsync(outReport);
 
-            Tracer.Trace(false, bytes, bytes.Length);
-
+            Tracer?.Trace(false, bytes);
 
             await operation.AsTask();
         }

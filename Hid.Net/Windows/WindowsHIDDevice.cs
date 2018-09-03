@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hid.Net
 {
-    public class WindowsHidDevice : IHidDevice
+    public class WindowsHidDevice : HidDeviceBase, IHidDevice
     {
         //TODO: Implement
         #region Events
@@ -42,7 +42,7 @@ namespace Hid.Net
         #region Public Static Methods
         public static Collection<DeviceInformation> GetConnectedDeviceInformations()
         {
-            var deviceInformations = new DeviceInformation[0];
+            var deviceInformations = new Collection<DeviceInformation>();
             var spDeviceInterfaceData = new SpDeviceInterfaceData();
             var spDeviceInfoData = new SpDeviceInfoData();
             var spDeviceInterfaceDetailData = new SpDeviceInterfaceDetailData();
@@ -88,14 +88,12 @@ namespace Hid.Net
                     continue;
                 }
 
-                var arrayNewSize = deviceInformations.Length + 1;
-                Array.Resize(ref deviceInformations, arrayNewSize);
-                deviceInformations[arrayNewSize - 1] = deviceInformation;
+                deviceInformations.Add(deviceInformation);
             }
 
             APICalls.SetupDiDestroyDeviceInfoList(i);
 
-            return new Collection<DeviceInformation>(deviceInformations);
+            return deviceInformations;
         }
 
         #endregion
@@ -218,7 +216,7 @@ namespace Hid.Net
                 retVal = bytes;
             }
 
-            Tracer.Trace(false, retVal, retVal.Length);
+            Tracer?.Trace(false, retVal);
 
             return retVal;
         }
@@ -264,7 +262,7 @@ namespace Hid.Net
                     throw new IOException(Helpers.WriteErrorMessage, ex);
                 }
 
-                Tracer.Trace(true, bytes, bytes.Length);
+                Tracer?.Trace(true, bytes);
             }
             else
             {

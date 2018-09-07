@@ -17,25 +17,12 @@ namespace Hid.Net.Unity
 
         public int ProductId => hidDevice.Attributes.ProductId;
 
-        private UnityHIDDevice(HidLibrary.HidDevice hidDevice)
+        public UnityHIDDevice(HidLibrary.HidDevice hidDevice)
         {
             this.hidDevice = hidDevice;
 
             hidDevice.Inserted += () => Connected(null, null);
             hidDevice.Removed += () => Disconnected(null, null);
-        }
-
-        public static IEnumerable<UnityHIDDevice> GetConnectedDevices(int vendorId, int? productId, short? usagePage, short? usage)
-        {
-            List<HidLibrary.HidDevice> devices = new List<HidLibrary.HidDevice>();
-            if (!productId.HasValue)
-                devices.AddRange(HidLibrary.HidDevices.Enumerate(vendorId));
-            else
-                devices.AddRange(HidLibrary.HidDevices.Enumerate(vendorId, productId.Value));
-
-            var hidDevices = devices.Where(d => usagePage == null || usage == null || (d.Capabilities.UsagePage == usagePage && (ushort)d.Capabilities.Usage == usage));
-
-            return hidDevices.Select(d => new UnityHIDDevice(d));
         }
 
         public void Dispose()
